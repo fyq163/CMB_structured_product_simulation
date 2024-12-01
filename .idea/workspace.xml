@@ -4,109 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23eace01-86d2-46a0-8729-93d9dba2b02f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.ipynb_checkpoints/shark-fin-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.ipynb_checkpoints/whole_market_beta-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../conclusions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../notebooks/beta_find.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../notebooks/etf weights semi.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../notebooks/etf weights.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../notebooks/portfolio.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../notebooks/pyportfolioopt_try.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../notebooks/shark-fin.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../notebooks/whole_market_beta.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/.idea/structured_valuation.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/.cmake/api/v1/query/cache-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CMakeRCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdCXX/CMakeCXXCompilerId.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdCXX/CMakeCXXCompilerId.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/ShowIncludes/foo.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/ShowIncludes/main.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/ShowIncludes/main.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/.cmake/api/v1/query/cache-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CMakeRCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CompilerIdCXX/CMakeCXXCompilerId.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/3.28.1/CompilerIdCXX/CMakeCXXCompilerId.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/ShowIncludes/foo.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/ShowIncludes/main.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/ShowIncludes/main.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/clion-Release-log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/cmake-build-release/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/please_disregard/latex.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/please_disregard/longest_edition.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/please_disregard/resume.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/please_disregard/resume.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/build/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/build/CMakeFiles/3.29.0-rc2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/build/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/build/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/cmb_shark_fin.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/duration.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/original_python_code.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../structured_valuation/structured_valuation/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation.egg-info/PKG-INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation.egg-info/SOURCES.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation.egg-info/dependency_links.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation.egg-info/requires.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation.egg-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation/learning_structure_valuation.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/structured_simulation/wraps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/analysis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RecordFX/RecordFX.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find-composition.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../notebooks/find-composition.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../loop_over.py" beforeDir="false" afterPath="$PROJECT_DIR$/../notebooks/loop_over.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shark-fin.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tttt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tttt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../your_database_name.db" beforeDir="false" afterPath="$PROJECT_DIR$/../bond_optimization.py" afterDir="false" />
+    <list default="true" id="23eace01-86d2-46a0-8729-93d9dba2b02f" name="Changes" comment="initial comments">
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sv_wrap.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,8 +28,14 @@
       </map>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/main" />
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -138,6 +48,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/smbserver/source/analysis/sv_wrap",
@@ -168,10 +79,24 @@
       <updated>1733054044685</updated>
       <workItem from="1733054045830" duration="150000" />
       <workItem from="1733054268570" duration="3116000" />
+      <workItem from="1733057619672" duration="625000" />
     </task>
+    <task id="LOCAL-00001" summary="no comments">
+      <option name="closed" value="true" />
+      <created>1733057778434</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733057778434</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="no comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="no comments" />
   </component>
 </project>
