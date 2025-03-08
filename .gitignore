@@ -4,3 +4,10 @@
 __pycache__/
 structured_simulation.egg-info
 cmake*
+/.idea/.name
+/.idea/modules.xml
+/.idea/vcs.xml
+/misc.xml
+/CMB_structured_product_simulation.iml
+/.idea/CMB_structured_product_simulation.iml
+/.idea/misc.xml
