@@ -3,3 +3,4 @@
 .vscode/
 __pycache__/
 structured_simulation.egg-info
+*.xml
