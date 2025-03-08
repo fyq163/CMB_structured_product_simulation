@@ -1,2 +1,0 @@
-C:/Users/Administrator/source/analysis/sv_wrap/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Administrator/source/analysis/sv_wrap/build/CMakeFiles/ZERO_CHECK.dir
