@@ -11,6 +11,8 @@ setup(
     include_package_data=True,  # including all .pyd
     install_requires=[
         "numpy",  # dependencies
-        "pandas"
+        "pandas",
+        "sqlalchemy",
+        "seaborn"
     ],
 )

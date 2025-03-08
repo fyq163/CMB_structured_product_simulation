@@ -1,12 +1,14 @@
-import sys
+import sys,os,datetime
 from typing import Union
+# Add the directory containing the .pyd file to the system path
+sys.path.append(
+    r'C:\Users\Administrator\miniconda3\envs\py9\Library\bin'
+)
+import cmb_structured_valuation as sv
 
-sys.path.append('/Users/chenzhe/Documents/Projects/structured_valuation/sv_wrap/structured_simulation')
-import learning_structure_valuation as sv
 import numpy as np
 import pandas as pd
 from ProcssFunc import if_tradeday
-import datetime
 import ProcssFunc as pf
 from arch import arch_model
 
@@ -39,10 +41,12 @@ def dual_shark_fin(
     Examples
     --------
     >>> res = dual_shark_fin(
-    ...     price_path, high_price_trigger,low_price_threshold, k2=0.0165,
+    ...     np.random.randn(1000,1000),
+    ...     high_price_trigger=1.15, low_price_threshold=0.85,
+    ...     k2=0.0165,
     ...     participate_rate=0.2612
     ... )
-    >>> print(res.mean(),res.std())
+    >>> print(np.mean(res),np.std(res))
     (0.021247633780875654 0.003572758860287444)
         """
     if isinstance(price_path, np.ndarray):

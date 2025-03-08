@@ -3,5 +3,11 @@
   <component name="Black">
     <option name="sdkName" value="C:\Users\smbserver\miniconda3" />
   </component>
+  <component name="CMakePythonSetting">
+    <option name="pythonIntegrationState" value="YES" />
+  </component>
+  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$/cpp_source">
+    <contentRoot DIR="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="C:\Users\smbserver\miniconda3" project-jdk-type="Python SDK" />
 </project>

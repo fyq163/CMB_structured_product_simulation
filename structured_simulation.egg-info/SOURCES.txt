@@ -1,9 +1,0 @@
-setup.py
-structured_simulation/__init__.py
-structured_simulation/learning_structure_valuation.pyd
-structured_simulation/wraps.py
-structured_simulation.egg-info/PKG-INFO
-structured_simulation.egg-info/SOURCES.txt
-structured_simulation.egg-info/dependency_links.txt
-structured_simulation.egg-info/requires.txt
-structured_simulation.egg-info/top_level.txt
