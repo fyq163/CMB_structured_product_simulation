@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# this is experimental to see if numba can replace cpp accelerated code for structured product simulation
 import numpy as np
 from numba import njit
 

@@ -13,3 +13,6 @@ cmake*
 /CMB_structured_product_simulation.iml
 /.idea/CMB_structured_product_simulation.iml
 /.idea/misc.xml
+/cpp_source/build/
+/Release/
+cpp_source/build/*

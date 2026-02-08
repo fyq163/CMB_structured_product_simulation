@@ -60,8 +60,8 @@ def dual_shark_fin(
         price_path, high_price_trigger, low_price_threshold, k1, k2, participate_rate)
 
 
-def one_way_shark_fin(price_path, direction, high_price_trigger, low_price_threshold, k1,
-                      k3, participate_rate=0.1002
+def py_one_way_shark_fin(price_path, direction, high_price_trigger, low_price_threshold, k1,
+                      k3, participate_rate=0.1002, **kwargs
                       ):
     """
 
@@ -127,7 +127,7 @@ def price_path_simulation(mu=0.0249, sigma=0.2, n_steps=125, T=252, n_s=999999):
     for t_ in range(1, n_steps + 1):
         z_ = np.random.default_rng().normal(0, 1, n_s)  # normal distribution rng
         price_paths[t_] = price_paths[t_ - 1] * np.exp((mu - 0.5 * sigma ** 2) * dt + sigma * np.sqrt(dt) * z_)
-    price_paths = pd.DataFrame(price_paths)
+    # price_paths = pd.DataFrame(price_paths)
     return price_paths
 
 
@@ -148,8 +148,8 @@ def calc_trade_days_2_maturity(start_date='20241126', end_date='20241129'):
         Days to maturity
     """
     dates = []
-    start_date = datetime.datetime.strptime(start_date, '%Y%m%d')
-    end_date = datetime.datetime.strptime(end_date, '%Y%m%d')
+    start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
+    end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
     for date in (start_date + datetime.timedelta(days=n) for n in range((end_date - start_date).days + 1)):
         if pf.if_tradeday(date):
             dates.append(date)
