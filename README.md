@@ -12,7 +12,7 @@
 Before you begin, you need to install the following tools and dependencies:
 
 #### 1. Python 环境 / Python Environment
-- **Python 3.9+** (推荐 Python 3.9 或更高版本)
+- **Python 3.9+** (推荐使用 Python 3.9 或更高版本 / Recommended: Python 3.9 or higher)
 - 可以使用 Anaconda 或 Miniconda 来管理 Python 环境
 
 ```bash
@@ -275,7 +275,8 @@ price_path = ss.price_path_simulation(
 )
 
 # 计算双向鲨鱼鳍收益
-# k1 参数默认为 0，可以省略 / k1 parameter defaults to 0 and can be omitted
+# 注意：k1 参数（敲出后固定收益率）默认为 0，在不需要敲出收益时可以省略
+# Note: k1 parameter (knock-out fixed return) defaults to 0, can be omitted when knock-out return is not needed
 results = ss.dual_shark_fin(
     price_path, 
     high_price_trigger=1.15, 
