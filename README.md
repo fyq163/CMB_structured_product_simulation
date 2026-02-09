@@ -275,6 +275,7 @@ price_path = ss.price_path_simulation(
 )
 
 # 计算双向鲨鱼鳍收益
+# k1 参数默认为 0，可以省略 / k1 parameter defaults to 0 and can be omitted
 results = ss.dual_shark_fin(
     price_path, 
     high_price_trigger=1.15, 
