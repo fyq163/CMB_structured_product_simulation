@@ -142,11 +142,15 @@ Before building, modify the `cpp_source/CMakeLists.txt` file to set your Python 
 set(Python3_ROOT_DIR "/path/to/your/python/env")
 set(CMAKE_PREFIX_PATH "/path/to/your/python/env/lib/site-packages/pybind11/share/cmake/pybind11")
 set(Python3_INCLUDE_DIR "/path/to/your/python/env/include")
-set(Python3_LIBRARY "/path/to/your/python/env/libs/python39.lib")  # Windows
-# set(Python3_LIBRARY "/path/to/your/python/env/lib/libpython3.9.so")  # Linux
+set(Python3_LIBRARY "/path/to/your/python/env/libs/python39.lib")  # Windows (python310.lib for 3.10, python311.lib for 3.11, etc.)
+# set(Python3_LIBRARY "/path/to/your/python/env/lib/libpython3.9.so")  # Linux (adjust version number as needed)
 set(Python3_EXECUTABLE "/path/to/your/python/env/python.exe")  # Windows
 # set(Python3_EXECUTABLE "/path/to/your/python/env/bin/python")  # Linux/macOS
 ```
+
+> **注意 / Note:** 如果您使用的是 Python 3.10、3.11 或其他版本，请相应地调整库文件名（例如 `python310.lib`、`libpython3.10.so` 等）。
+> 
+> If you're using Python 3.10, 3.11, or another version, adjust the library filenames accordingly (e.g., `python310.lib`, `libpython3.10.so`, etc.).
 
 **使用 CMake 构建 / Build with CMake**
 
