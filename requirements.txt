@@ -1,0 +1,8 @@
+numpy
+pandas
+sqlalchemy
+seaborn
+pybind11
+# Optional: only needed for garch1_1_volatility_forecast
+arch
+# External (not on PyPI): ProcssFunc — only needed for calc_trade_days_2_maturity

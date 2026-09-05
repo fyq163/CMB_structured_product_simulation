@@ -8,9 +8,8 @@ import cmb_structured_valuation as sv
 
 import numpy as np
 import pandas as pd
-from ProcssFunc import if_tradeday
-import ProcssFunc as pf
-from arch import arch_model
+# ProcssFunc and arch are imported lazily inside the functions that need them,
+# so `import structured_simulation` works without those optional dependencies.
 
 
 def dual_shark_fin(
@@ -147,6 +146,13 @@ def calc_trade_days_2_maturity(start_date='20241126', end_date='20241129'):
     int
         Days to maturity
     """
+    try:
+        import ProcssFunc as pf
+    except ImportError as e:
+        raise ImportError(
+            "calc_trade_days_2_maturity requires the external ProcssFunc module "
+            "(not on PyPI). Install/configure it, or skip this helper."
+        ) from e
     dates = []
     start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
@@ -157,6 +163,12 @@ def calc_trade_days_2_maturity(start_date='20241126', end_date='20241129'):
 
 
 def garch1_1_volatility_forecast(log_returns):
+    try:
+        from arch import arch_model
+    except ImportError as e:
+        raise ImportError(
+            "garch1_1_volatility_forecast requires the arch package: pip install arch"
+        ) from e
     model = arch_model(log_returns, vol='GARCH', p=1, q=1)
     model_fit = model.fit(disp='off')
     forecast = model_fit.forecast(horizon=1, simulations=9999)
