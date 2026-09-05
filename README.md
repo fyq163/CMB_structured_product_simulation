@@ -113,17 +113,16 @@ cd CMB_structured_product_simulation
 ```bash
 pip install -r requirements.txt
 
-# 或者直接安装
-pip install numpy pandas sqlalchemy seaborn
+# 或者直接安装核心依赖 / Or install core deps only
+pip install numpy pandas sqlalchemy seaborn pybind11
 ```
 
-如果您需要使用 GARCH 模型相关功能：
+可选依赖 / Optional dependencies:
+- `arch`：仅 `garch1_1_volatility_forecast` 需要（`pip install arch`）
+- `ProcssFunc`：外部模块，不在 PyPI；仅 `calc_trade_days_2_maturity` 需要
 
-If you need GARCH model functionality:
-
-```bash
-pip install arch
-```
+- `arch`: only for `garch1_1_volatility_forecast` (`pip install arch`)
+- `ProcssFunc`: external module, not on PyPI; only for `calc_trade_days_2_maturity`
 
 #### 第三步：构建 C++ 扩展模块 / Step 3: Build the C++ Extension Module
 
@@ -175,9 +174,25 @@ cmake --build .
 ninja
 ```
 
-构建成功后，会在 `build` 目录中生成 `cmb_structured_valuation.pyd` (Windows) 或 `cmb_structured_valuation.so` (Linux/macOS) 文件。
+**Windows (MSVC) / Visual Studio generator**
 
-After a successful build, you will find `cmb_structured_valuation.pyd` (Windows) or `cmb_structured_valuation.so` (Linux/macOS) in the `build` directory.
+在 **x64 Native Tools / Developer PowerShell for VS** 中构建，并匹配 Python 位数（通常 x64）：
+
+Build inside an **x64 Native Tools / Developer PowerShell for VS** shell, matching your Python bitness (usually x64):
+
+```bash
+cd cpp_source
+mkdir build
+cd build
+cmake .. -G "Visual Studio 17 2022" -A x64
+cmake --build . --config Release
+```
+
+构建产物位置 / Output locations:
+- Ninja / MinGW: 通常在 `cpp_source/build/cmb_structured_valuation.pyd`（或 `.so`）
+- Visual Studio: 通常在 `cpp_source/build/Release/cmb_structured_valuation.pyd`
+
+Ninja/MinGW usually writes `cmb_structured_valuation.pyd` (or `.so`) under `cpp_source/build/`. Visual Studio usually writes it under `cpp_source/build/Release/`.
 
 #### 第四步：复制生成的文件 / Step 4: Copy the Generated File
 
@@ -186,8 +201,11 @@ After a successful build, you will find `cmb_structured_valuation.pyd` (Windows)
 Copy the generated `.pyd` or `.so` file to the `structured_simulation` directory:
 
 ```bash
-# Windows
+# Windows (Ninja/MinGW output in build/)
 copy cmb_structured_valuation.pyd ../../structured_simulation/
+
+# Windows (MSVC / Visual Studio Release output)
+copy Release\cmb_structured_valuation.pyd ..\..\structured_simulation\
 
 # Linux/macOS
 cp cmb_structured_valuation.so ../../structured_simulation/
@@ -195,11 +213,16 @@ cp cmb_structured_valuation.so ../../structured_simulation/
 
 #### 第五步：安装包（可选）/ Step 5: Install the Package (Optional)
 
+> **重要 / Important:** 根目录 `setup.py` **不会**编译 C++ 扩展；它只打包已经存在的 `*.pyd`（目前未声明 `*.so`）。请先完成上面的构建与复制步骤，再安装包。
+>
+> Root `setup.py` does **not** build the C++ extension; it only packages an existing `*.pyd` (and currently does not declare `*.so`). Build and copy the extension first, then install the package.
+
 ```bash
 # 返回项目根目录
 cd ../..
 
-# 以开发模式安装（推荐）
+# 以开发模式安装（推荐）— 仅安装 Python 包装层，不触发 pybind11 构建
+# Editable install (recommended) — installs the Python wrapper only; does not trigger a pybind11 build
 pip install -e .
 
 # 或者直接安装
@@ -216,9 +239,12 @@ pip install .
 
 > **重要提示 / Important Note:** 
 > 
-> `structured_simulation/wraps.py` 文件中包含一些硬编码的路径（第 4-6 行）。如果您直接导入 `structured_simulation` 包遇到问题，可能需要修改这些路径或直接导入 C++ 扩展模块。
+> `structured_simulation/wraps.py` 含硬编码路径（用于寻找运行时 DLL / `.pyd`）。若 `import structured_simulation` 失败，请检查该路径，或把扩展文件放到包目录 / `sys.path` 中，也可直接 `import cmb_structured_valuation`。
 > 
-> The `structured_simulation/wraps.py` file contains hardcoded paths (lines 4-6). If you encounter issues importing the `structured_simulation` package, you may need to modify these paths or import the C++ extension module directly.
+> `structured_simulation/wraps.py` contains a hardcoded path used to locate runtime DLLs / the `.pyd`. If `import structured_simulation` fails, adjust that path, place the extension on `sys.path` / in the package folder, or `import cmb_structured_valuation` directly.
+> 
+> `ProcssFunc` / `arch` 已改为惰性导入，不再挡住基础鲨鱼鳍 API。
+> `ProcssFunc` / `arch` are lazy-imported and no longer block the core shark-fin APIs.
 
 ### 基本用法 / Basic Usage
 
@@ -352,6 +378,7 @@ This project provides the following main functions:
    - 计算双向鲨鱼鳍产品收益 / Calculate dual shark fin returns
    - 内部调用 C++ 实现的 `two_way_shark_fin` 函数
    - Internally calls C++ `two_way_shark_fin` function
+   - **默认值注意 / Defaults differ from C++:** Python wrapper uses `k1=0`, `participate_rate=0.2612`; C++ `two_way_shark_fin` defaults are `k1=0.0185`, `participate_rate=0.1002`
 
 3. **`py_one_way_shark_fin(price_path, direction, high_price_trigger, low_price_threshold, k1, k3, participate_rate=0.1002)`**
    - 计算单向鲨鱼鳍产品收益 / Calculate one-way shark fin returns
@@ -359,11 +386,15 @@ This project provides the following main functions:
    - 内部调用 C++ 实现的 `one_way_shark_fin` 函数
    - Internally calls C++ `one_way_shark_fin` function
 
-4. **`calc_trade_days_2_maturity(start_date, end_date)`** *(需要 ProcssFunc 模块 / Requires ProcssFunc module)*
+4. **`calc_trade_days_2_maturity(start_date, end_date)`** *(可选依赖 ProcssFunc / optional ProcssFunc)*
    - 计算交易日天数 / Calculate trading days
+   - 仅调用此函数时才需要外部模块 `ProcssFunc`（不在 PyPI）
+   - `ProcssFunc` is required only when calling this function (external, not on PyPI)
 
-5. **`garch1_1_volatility_forecast(log_returns)`** *(需要 arch 包 / Requires arch package)*
+5. **`garch1_1_volatility_forecast(log_returns)`** *(可选依赖 arch / optional arch)*
    - GARCH(1,1) 波动率预测 / GARCH(1,1) volatility forecasting
+   - 仅调用此函数时才需要 `pip install arch`
+   - `arch` is required only when calling this function
 
 ### C++ 扩展模块函数 / C++ Extension Module Functions
 
@@ -431,63 +462,34 @@ Make sure your compiler supports the C++17 standard. For older versions of GCC, 
 sudo apt-get install gcc-9 g++-9
 ```
 
-**问题 4：ImportError: cannot import name 'ProcssFunc'**
+**问题 4：ImportError: cannot import name 'ProcssFunc' / No module named 'ProcssFunc'**
 
-**Problem 4: ImportError: cannot import name 'ProcssFunc'**
+**Problem 4: ImportError: cannot import name 'ProcssFunc' / No module named 'ProcssFunc'**
 
-`ProcssFunc` 是一个外部依赖模块，用于交易日计算。如果您不需要 `calc_trade_days_2_maturity` 功能，可以忽略此错误。如果需要此功能，请确保安装了相应的模块。
+`ProcssFunc` 是**外部模块**（通常不在 PyPI），仅被 `calc_trade_days_2_maturity` 使用（惰性导入）。导入 `structured_simulation` 以及使用 `dual_shark_fin` / `py_one_way_shark_fin` / `price_path_simulation` **不需要**它。只有调用交易日函数时才会报错。
 
-`ProcssFunc` is an external dependency module for trading day calculations. If you don't need the `calc_trade_days_2_maturity` function, you can ignore this error. If you need this functionality, ensure the corresponding module is installed.
+`ProcssFunc` is an **external module** (typically not on PyPI), used only by `calc_trade_days_2_maturity` (lazy import). Importing `structured_simulation` and using `dual_shark_fin` / `py_one_way_shark_fin` / `price_path_simulation` does **not** require it. The error appears only when you call the trading-day helper.
 
 **解决方案 / Solution:**
-- 如果不使用交易日计算功能，可以直接使用 `dual_shark_fin` 和 `py_one_way_shark_fin` 而不会遇到此问题
-- If you don't use trading day calculations, you can use `dual_shark_fin` and `py_one_way_shark_fin` without encountering this issue
+- 不需要交易日功能：忽略即可，继续用鲨鱼鳍相关函数
+- If you do not need trading-day helpers: ignore it and keep using the shark-fin APIs
+- 需要该功能：自行安装/配置 `ProcssFunc` 到 Python 路径
+- If you need it: install/configure `ProcssFunc` on your Python path yourself
 
 **问题 5：arch 包相关错误**
 
 **Problem 5: arch package related errors**
 
-GARCH 波动率预测功能需要 `arch` 包。如果不需要此功能，可以忽略相关错误。
+`arch` 仅被 `garch1_1_volatility_forecast` 惰性导入。其他函数不依赖它。
 
-GARCH volatility forecasting requires the `arch` package. If you don't need this functionality, you can ignore related errors.
+`arch` is lazily imported only by `garch1_1_volatility_forecast`. Other functions do not depend on it.
 
 ```bash
-# 安装 arch 包
+# 需要 GARCH 功能时再安装 / Install only if you need GARCH
 pip install arch
 ```
 
-> 
 
-## Quick Start
-### Install 
-write installation guide  here
-```
-Short steps to build a .pyd from your pybind11 C++ project on Windows (Miniconda env):
-
-Prepare environment
-Install pybind11 and CMake in the conda env: conda activate py9
-pip install pybind11 cmake
-Make sure Visual Studio Build Tools (MSVC) for your Python bitness (x64) are installed.
-Use an MSVC developer shell (or Developer PowerShell for VS) so msbuild is available, then run:
-Where the .pyd ends up
-For the Visual Studio generator the produced file is typically at: build/Release/cmb_structured_valuation.pyd
-Copy that .pyd into a folder on Python’s sys.path (e.g. your package folder or site-packages of the env), or add build/Release to PYTHONPATH for testing.
-Quick import test:
-Notes / gotchas
-
-Match bitness: if your Python is 64-bit, build x64. Use the matching Visual Studio generator (-A x64).
-Remove or avoid -static in CMake if you get link errors with Python runtime.
-If CMake cannot find Python/pybind11, pass -DPython3_ROOT_DIR or use pip-installed pybind11 and ensure CMake can find it.
-If you prefer a single-command alternative, use scikit-build / setuptools + pybind11 and run python setup.py build_ext --inplace.
-If you want, I can give an adjusted CMake command line tuned to your enviroment
-# 从 build 输出复制到包目录（项目根中运行）
-copy .\sv_wrap\cpp_source\build\Release\cmb_structured_valuation.pyd .\sv_wrap\structured_simulation\
-
-# 或复制到当前 conda env site-packages
-copy .\sv_wrap\cpp_source\build\Release\cmb_structured_valuation.pyd "C:\Users\Administrator\miniconda3\envs\py9\Lib\site-packages\"
-# 在激活的 py9 环境中测试导入
-python -c "import sys; print(sys.version); import cmb_structured_valuation as m; print('loaded', m)"
-```
 ## 常见产品 Applicable Product
 招商的结构化产品利率较高的主要集中在沪深300、中证1000、中证500等指数上。包括单项鲨鱼鳍、双向鲨鱼鳍、价差结构，且产品合同计算方式较为统一
 CMB's has varieties of structured product, hooked with CSI300, CSI1000, CSI 500 etc, ranging from one way sharkfin to 
