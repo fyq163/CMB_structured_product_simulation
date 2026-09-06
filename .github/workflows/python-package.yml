@@ -1,8 +1,8 @@
 name: Python Package
 
 on:
-  push:
   pull_request:
+    types: [opened]
 
 jobs:
   build-linux:
