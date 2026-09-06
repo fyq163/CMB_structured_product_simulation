@@ -1,0 +1,74 @@
+name: Python Package
+
+# - New pull requests: run checks once when the PR is opened
+# - Later fixes: comment /check on the PR to run checks again (no push required)
+# Note: issue_comment workflows are loaded from the default branch only.
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  build-linux:
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       contains(github.event.comment.body, '/check'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Checkout (pull_request)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+
+      - name: Resolve PR head (comment trigger)
+        if: github.event_name == 'issue_comment'
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr_json="$(gh api "repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}")"
+          echo "sha=$(echo "$pr_json" | jq -r .head.sha)" >> "$GITHUB_OUTPUT"
+          echo "repo=$(echo "$pr_json" | jq -r .head.repo.full_name)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout PR head (comment trigger)
+        if: github.event_name == 'issue_comment'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ steps.pr.outputs.repo }}
+          ref: ${{ steps.pr.outputs.sha }}
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies with uv pip
+        run: |
+          uv pip install --system -r requirements.txt
+          uv pip install --system flake8 pytest
+
+      - name: Lint with flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Test with pytest
+        run: |
+          # Exit code 5 means pytest collected no tests; treat that as success for now.
+          set +e
+          pytest
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ] || [ "$status" -eq 5 ]; then
+            exit 0
+          fi
+          exit "$status"
