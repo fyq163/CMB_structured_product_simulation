@@ -1,29 +1,43 @@
 name: Python Package
 
-# Run only when someone comments /check on a pull request (saves Actions quota).
+# - New pull requests: run checks once when the PR is opened
+# - Later fixes: comment /check on the PR to run checks again (no push required)
+# Note: issue_comment workflows are loaded from the default branch only.
 on:
+  pull_request:
+    types: [opened]
   issue_comment:
     types: [created]
 
 jobs:
   build-linux:
     if: >
-      github.event.issue.pull_request &&
-      contains(github.event.comment.body, '/check')
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       contains(github.event.comment.body, '/check'))
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
 
     steps:
-      - name: Resolve PR head ref
+      - name: Checkout (pull_request)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+
+      - name: Resolve PR head (comment trigger)
+        if: github.event_name == 'issue_comment'
         id: pr
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           pr_json="$(gh api "repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}")"
-          echo "ref=$(echo "$pr_json" | jq -r .head.ref)" >> "$GITHUB_OUTPUT"
           echo "sha=$(echo "$pr_json" | jq -r .head.sha)" >> "$GITHUB_OUTPUT"
           echo "repo=$(echo "$pr_json" | jq -r .head.repo.full_name)" >> "$GITHUB_OUTPUT"
 
-      - name: Checkout PR head
+      - name: Checkout PR head (comment trigger)
+        if: github.event_name == 'issue_comment'
         uses: actions/checkout@v4
         with:
           repository: ${{ steps.pr.outputs.repo }}
